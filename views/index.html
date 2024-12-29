@@ -40,7 +40,6 @@
     </div>
   </section>
 
-  <!-- Modal for Phone Number Form -->
   <div id="modalSMS" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -55,7 +54,6 @@
     </div>
   </div>
 
-  <!-- Modal for PIN Verification -->
   <div id="modalVerification" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -70,22 +68,20 @@
     </div>
   </div>
 
-  <!-- Modal for SIM Swap Confirmation -->
   <div id="modalSwapped" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h3>SIM Swap Detected</h3>
+      <h3>SIM Swap Alert ⚠️</h3>
       <form id="confirmSwapForm">
         <div class="container">
-          <b>A recent SIM swap was detected. Proceed?</b>
-          <button type="submit" id="accept_swapped" class="submit-btn">Yes, it was me</button>
-          <button type="button" id="cancel_swapped" class="cancel-btn">No, it wasn't me</button>
+          <b>A recent SIM swap was detected.</b>
+          <p>Password reset is blocked for security reasons. ✉️</p>
+          <button id="contactSupportBtn" class="submit-btn">Contact Support</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal for Setting New Password -->
   <div id="modalNewPassword" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>

@@ -482,3 +482,22 @@ h3 {
   background-color: #2980b9;
   transform: translateY(-3px);
 }
+
+#contactSupportBtn {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+#contactSupportBtn:hover {
+  background-color: #e53935;
+}

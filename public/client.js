@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Get relevant form elements
   const loginForm = document.getElementById("loginForm");
   const userInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const logoutButton = document.getElementById("logoutButton");
   let currentModal = "";
 
-  // Function to close the current modal
   function closeCurrentModal() {
     if (currentModal) {
       currentModal.style.display = "none";
@@ -35,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Function to show a specific modal
   function showModal(modal) {
     modal.style.display = "block";
     if (currentModal && currentModal !== modal) {
@@ -50,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Close modals when clicking on close button
   const spans = document.getElementsByClassName("close");
   for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = function () {
@@ -58,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Function to send data to the server
   async function sendData(url, data) {
     try {
       const response = await fetch(url, {
@@ -74,20 +69,16 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     } catch (error) {
       console.error(`Error during data request to ${url}:`, error);
-      //alert("An error occurred while communicating with the server.");
     }
   }
 
-  // Function to send a verification code
   function sendCode() {
     sendData("/sendcode", {})
       .then((data) => {
         if (data && data.verifycode) {
           console.log("Verification code sent successfully:", data);
         } else {
-          alert(
-            "There was an error sending the verification code. Please try again later."
-          );
+          alert("There was an error sending the verification code. Please try again later.");
           closeCurrentModal();
         }
       })
@@ -97,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Handle phone number form submission
   if (phoneForm) {
     phoneForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -122,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Handle PIN form submission
   if (pinForm) {
     pinForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -146,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Handle Change of Password
   if (updatePassForm) {
     updatePassForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -162,9 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .catch((error) => {
             console.log(error);
-            alert(
-              "An error occurred while updating your password. Please try again."
-            );
+            alert("An error occurred while updating your password. Please try again.");
           });
       } else {
         alert("Passwords don't match.");
@@ -172,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Login handler
   if (loginForm) {
     loginForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -184,7 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.message !== "Success") {
             alert("Invalid user and password.");
           } else {
-            // Redirect to the /main page
             window.location.href = "/main";
           }
         })
@@ -195,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Handle acceptance of swapped SIM card
   if (acceptSwappedBtn) {
     acceptSwappedBtn.addEventListener("click", (event) => {
       event.preventDefault();
@@ -204,18 +187,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Handle cancellation of swapped SIM card
   if (cancelSwappedBtn) {
     cancelSwappedBtn.addEventListener("click", (event) => {
       event.preventDefault();
       closeCurrentModal();
     });
   }
-  // Add event listener to the logout button
+
   if (logoutButton) {
     logoutButton.addEventListener("click", () => {
-      // Redirect to index.html
       window.location.href = "/";
     });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const contactSupportBtn = document.getElementById("contactSupportBtn");
+
+  if (contactSupportBtn) {
+      contactSupportBtn.addEventListener("click", () => {
+          window.location.href = "mailto:support@example.com?subject=SIM Swap Issue&body=I noticed a SIM swap on my account, please assist.";
+      });
   }
 });

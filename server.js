@@ -26,21 +26,17 @@ const simSwapApiUrl = "https://api-eu.vonage.com/camara/sim-swap/v040/check";
 
 let phoneNumber = null;
 let verifyRequestId = null;
-let pwd = "123"; // Initial password
+let pwd = "123";
 
-// Serve the index.html file
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views/index.html"));
 });
 
-// Serve the main.html file
 app.get("/main", (req, res) => {
   res.sendFile(path.join(__dirname, "views/main.html"));
 });
 
-// Authenticate function for SIM Swap API
 async function authenticate(phone, scope) {
-
   try {
     const authReqResponse = await axios.post(
       authReqUrl,
@@ -80,7 +76,6 @@ async function authenticate(phone, scope) {
   }
 }
 
-// Check if the phone number has been recently swapped
 async function checkSim() {
   try {
     const accessToken = await authenticate(phoneNumber, scope);
@@ -107,9 +102,7 @@ async function checkSim() {
   }
 }
 
-// Route to send a verification code via Verify2 API using Channels
 app.post("/sendcode", async (req, res) => {
-  // overrides default phone number with the RECIPIENT_NUMBER variable
   const phone = process.env.RECIPIENT_NUMBER ? process.env.RECIPIENT_NUMBER: phoneNumber;
 
   try {
@@ -117,7 +110,7 @@ app.post("/sendcode", async (req, res) => {
      brand: "COMMUNITY",
       workflow: [
         {
-          channel: Channels.SMS, // Using SMS as the channel
+          channel: Channels.SMS,
           to: phone,
         },
       ],
@@ -134,7 +127,6 @@ app.post("/sendcode", async (req, res) => {
   }
 });
 
-// Handle SIM swap check
 app.post("/simswap", async (req, res) => {
   phoneNumber = req.body.phone;
   try {
@@ -149,7 +141,6 @@ app.post("/simswap", async (req, res) => {
   }
 });
 
-// Handle PIN verification
 app.post("/verify", (req, res) => {
   const { pin } = req.body;
   vonage.verify2
@@ -167,14 +158,12 @@ app.post("/verify", (req, res) => {
     });
 });
 
-// Update password
 app.post("/update", (req, res) => {
   const { newPass } = req.body;
   pwd = newPass;
   res.json({ message: "Success" });
 });
 
-// Handle login request
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   if (password === pwd) {
