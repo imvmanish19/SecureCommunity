@@ -7,7 +7,7 @@ This project demonstrates enhanced multifactor authentication in a **Secure Comm
 - If a **SIM swap** is detected, additional security measures are triggered to prevent unauthorized access.
 - If no SIM swap is detected, the user is authenticated via a secure **code-based authentication** process.
 
-![Design](/Users/mVenkatesh2/Downloads/SafetyCommunityProject/safety_community_project/public/CommunityDesign.png)
+![Design](https://github.com/imvmanish19/SecureCommunity/blob/main/public/CommunityDesign.png?raw=true)
 
 
 ## Key Features
