@@ -74,6 +74,6 @@ The SMS API sends new login detection messages to emergency contact specified by
 
 1. The user enters their phone number and password on the login page. A **new login detection message** is sent to the user’s emergency contact.
 2. During **password reset**, the **SIM Swap API** checks whether the number was swapped recently.
-3. If a **SIM swap** is detected, the user is shown a screen where they can **accept or reject** the login attempt.
+3. If a **SIM swap** is detected, the user is shown a screen where they can **contact support**.
 4. If no SIM swap is detected, a **verification code** is sent via the **Verify v2 API**.
 5. After successful verification, the user can access their **community dashboard**.
